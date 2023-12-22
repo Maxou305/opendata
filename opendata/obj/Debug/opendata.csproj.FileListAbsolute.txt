@@ -1,0 +1,10 @@
+C:\Users\maxime.chazard\source\repos\opendata\opendata\bin\Debug\opendata.exe.config
+C:\Users\maxime.chazard\source\repos\opendata\opendata\bin\Debug\opendata.exe
+C:\Users\maxime.chazard\source\repos\opendata\opendata\bin\Debug\opendata.pdb
+C:\Users\maxime.chazard\source\repos\opendata\opendata\obj\Debug\opendata.csproj.AssemblyReference.cache
+C:\Users\maxime.chazard\source\repos\opendata\opendata\obj\Debug\opendata.csproj.CoreCompileInputs.cache
+C:\Users\maxime.chazard\source\repos\opendata\opendata\obj\Debug\opendata.exe
+C:\Users\maxime.chazard\source\repos\opendata\opendata\obj\Debug\opendata.pdb
+C:\Users\maxime.chazard\source\repos\opendata\opendata\bin\Debug\Newtonsoft.Json.dll
+C:\Users\maxime.chazard\source\repos\opendata\opendata\bin\Debug\Newtonsoft.Json.xml
+C:\Users\maxime.chazard\source\repos\opendata\opendata\obj\Debug\opendata.csproj.CopyComplete
