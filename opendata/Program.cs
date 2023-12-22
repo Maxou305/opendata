@@ -24,7 +24,12 @@ namespace opendata
             
             string responseString = reader.ReadToEnd();
             List<TransportLine> json = JsonConvert.DeserializeObject<List<TransportLine>>(responseString);
-            Console.WriteLine(json[0].id);
+
+            foreach (TransportLine line in json)
+            {
+                Console.WriteLine("id : "+line.id);
+            }
+
 
 
 

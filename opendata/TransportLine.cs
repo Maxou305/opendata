@@ -9,8 +9,6 @@ using System.Threading.Tasks;
 namespace opendata
 {
     public class TransportLine
-
-    
     {
         [JsonProperty("id")]
         public string id { get; set; }
@@ -19,10 +17,10 @@ namespace opendata
         public string name { get; set; }
 
         [JsonProperty("lon")]
-        public string lon { get; set; }
+        public double lon { get; set; }
 
         [JsonProperty("lat")]
-        public string lat { get; set; }
+        public double lat { get; set; }
 
         [JsonProperty("lines")]
         public List<string> lines { get; set; }
