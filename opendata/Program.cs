@@ -16,19 +16,12 @@ namespace opendata
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
-            WebRequest request = WebRequest.Create("http://data.mobilites-m.fr/api/linesNear/json?x=5.7317390&y=45.1847290&dist=100&details=true");
-            WebResponse response = request.GetResponse();
+            Console.WriteLine(new Request().GetResponse()[0].name);
 
-            Stream stream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(stream);
-            
-            string responseString = reader.ReadToEnd();
-            List<TransportLine> json = JsonConvert.DeserializeObject<List<TransportLine>>(responseString);
-
-            foreach (TransportLine line in json)
-            {
-                Console.WriteLine("id : "+line.id);
-            }
+            //foreach (TransportLine line in json)
+            //{
+            //    Console.WriteLine("id : "+line.id);
+            //}
 
 
 
@@ -46,9 +39,7 @@ namespace opendata
             //}
             Console.WriteLine();
 
-            reader.Close();
-            stream.Close();
-            response.Close();
+
         }
     }
 }
