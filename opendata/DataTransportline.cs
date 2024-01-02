@@ -22,5 +22,7 @@ namespace opendata
             }
             return names;
         }
+        public List<TransportLine> getData() { return _data; }
+
     }
 }
