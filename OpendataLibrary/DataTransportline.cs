@@ -1,8 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OpendataLibrary
 {
@@ -14,7 +11,7 @@ namespace OpendataLibrary
 
         public DataTransportline(IAPI data)
         {
-            _data = data.GetResponse();
+            _data = deserialize(data.GetResponse());
         }
         public List<string> getNames()
         {
@@ -33,6 +30,9 @@ namespace OpendataLibrary
                 lines.Add(transportLine.lines);
             }
             return lines;
+        }
+        public List<TransportLine> deserialize(string data) {
+            return JsonConvert.DeserializeObject<List<TransportLine>>(data);
         }
     }
 }

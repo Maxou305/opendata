@@ -1,6 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using opendata;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using OpendataLibrary;
@@ -16,7 +14,7 @@ namespace OpendataTests
             DataTransportline data = new DataTransportline(new FakeRequest());
             List<string> fakeNames = data.getNames();
 
-            Assert.AreEqual("Toto", fakeNames[0]);
+            Assert.AreEqual("Grenoble,Champs-Elysées", fakeNames[0]);
         }
 
         [TestMethod]
@@ -25,7 +23,17 @@ namespace OpendataTests
             DataTransportline data = new DataTransportline(new FakeRequest());
             List<List<string>> fakeLines = data.getLines();
 
-            Assert.IsTrue(!fakeLines[0].Any());
+            Assert.IsTrue(fakeLines[0].Contains("SEM:12"));
+        }
+
+        [TestMethod]
+        public void TestGetLinesCount()
+        {
+            DataTransportline data = new DataTransportline(new FakeRequest());
+            List<List<string>> fakeLines = data.getLines();
+            int fakeLinesCount = fakeLines.Count();
+
+            Assert.AreEqual(3, fakeLinesCount);
         }
     }
 }

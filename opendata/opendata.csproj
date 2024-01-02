@@ -87,9 +87,9 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpendataLibrary\OpendataLibrary.csproj">
+    <ProjectReference Include="..\OpendataLibrary\OpenDataLibrary.csproj">
       <Project>{c00ee839-cdef-457a-a198-baf7e5b703de}</Project>
-      <Name>OpendataLibrary</Name>
+      <Name>OpenDataLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
