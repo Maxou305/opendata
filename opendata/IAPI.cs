@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace opendata
 {
-    public interface IRequest
+    public interface IAPI
     {
         List<TransportLine>GetResponse();
 

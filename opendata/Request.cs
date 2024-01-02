@@ -9,17 +9,18 @@ using System.Threading.Tasks;
 
 namespace opendata
 {
-    public class Request : IRequest
+    public class Request : IAPI
     {
-        private string _x;
-        private string _y;
         private List<TransportLine> _response;
 
         public Request()
         {
             _response = GetRequestFromAPI("5.7317390", "45.1847290");
         }
-        public Request(string x, string y) { _x = x; _y = y; }
+        public Request(string x, string y)
+        {
+            _response = GetRequestFromAPI(x, y);
+        }
 
         public List<TransportLine> GetResponse()
         {
@@ -41,6 +42,7 @@ namespace opendata
             response.Close();
             return JsonConvert.DeserializeObject<List<TransportLine>>(responseString);
         }
+
 
 
 
