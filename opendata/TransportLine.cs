@@ -24,16 +24,6 @@ namespace opendata
 
         [JsonProperty("lines")]
         public List<string> lines { get; set; }
-    
-    public TransportLine() { }
-    public TransportLine(string id, string name, double lon, double lat, List<string> lines)
-        {
-            this.id = id;
-            this.name = name;
-            this.lon = lon;
-            this.lat = lat;
-            this.lines = lines;
-        }
+
     }
-    
 }

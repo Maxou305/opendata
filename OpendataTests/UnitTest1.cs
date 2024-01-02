@@ -25,9 +25,7 @@ namespace OpendataTests
             DataTransportline data = new DataTransportline(new FakeRequest());
             List<List<string>> fakeLines = data.getLines();
 
-            bool isEmpty = !fakeLines[0].Any();
-
-            Assert.IsTrue(isEmpty);
+            Assert.IsTrue(!fakeLines[0].Any());
         }
     }
 }

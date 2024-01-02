@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -15,9 +16,9 @@ namespace opendata
 
         public Request()
         {
-            _response = GetRequestFromAPI("5.7317390", "45.1847290");
+            _response = GetRequestFromAPI(5.7317390, 45.1847290);
         }
-        public Request(string x, string y)
+        public Request(double x, double y)
         {
             _response = GetRequestFromAPI(x, y);
         }
@@ -27,9 +28,10 @@ namespace opendata
             return _response;
         }
 
-        public List<TransportLine> GetRequestFromAPI(string x, string y)
+        public List<TransportLine> GetRequestFromAPI(double x, double y)
         {
-            WebRequest request = WebRequest.Create("http://data.mobilites-m.fr/api/linesNear/json?x=" + x + "&y=" + y + "&dist=100&details=true");
+            string url = string.Format(CultureInfo.InvariantCulture, "http://data.mobilites-m.fr/api/linesNear/json?x={0}&y={1}&dist={2}&details=true", x, y, 500);
+            WebRequest request = WebRequest.Create(url);
             WebResponse response = request.GetResponse();
 
             Stream stream = response.GetResponseStream();
@@ -40,6 +42,7 @@ namespace opendata
             reader.Close();
             stream.Close();
             response.Close();
+
             return JsonConvert.DeserializeObject<List<TransportLine>>(responseString);
         }
 
