@@ -2,6 +2,7 @@
 using opendata;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Remoting.Messaging;
 
 namespace OpendataTests
@@ -16,6 +17,17 @@ namespace OpendataTests
             List<string> fakeNames = data.getNames();
 
             Assert.AreEqual("Toto", fakeNames[0]);
+        }
+
+        [TestMethod]
+        public void TestGetLines()
+        {
+            DataTransportline data = new DataTransportline(new FakeRequest());
+            List<List<string>> fakeLines = data.getLines();
+
+            bool isEmpty = !fakeLines[0].Any();
+
+            Assert.IsTrue(isEmpty);
         }
     }
 }
