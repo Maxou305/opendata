@@ -8,16 +8,14 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace opendata
+namespace OpendataLibrary
 {
     public class Request : IAPI
     {
         private List<TransportLine> _response;
 
-        public Request()
-        {
-            _response = GetRequestFromAPI(5.7317390, 45.1847290);
-        }
+        public Request() : this(5.7317390, 45.1847290) { }
+
         public Request(double x, double y)
         {
             _response = GetRequestFromAPI(x, y);

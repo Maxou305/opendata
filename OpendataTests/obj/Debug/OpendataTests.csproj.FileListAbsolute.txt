@@ -24,3 +24,5 @@ C:\Users\maxime.chazard\source\repos\opendata\OpendataTests\bin\Debug\Newtonsoft
 C:\Users\maxime.chazard\source\repos\opendata\OpendataTests\obj\Debug\OpendataTests.csproj.CopyComplete
 C:\Users\maxime.chazard\source\repos\opendata\OpendataTests\obj\Debug\OpendataTests.dll
 C:\Users\maxime.chazard\source\repos\opendata\OpendataTests\obj\Debug\OpendataTests.pdb
+C:\Users\maxime.chazard\source\repos\opendata\OpendataTests\bin\Debug\OpendataLibrary.dll
+C:\Users\maxime.chazard\source\repos\opendata\OpendataTests\bin\Debug\OpendataLibrary.pdb

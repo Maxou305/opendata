@@ -57,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OpendataLibrary\OpendataLibrary.csproj">
+      <Project>{c00ee839-cdef-457a-a198-baf7e5b703de}</Project>
+      <Name>OpendataLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\opendata\opendata.csproj">
       <Project>{F9541AC8-20DC-4119-A699-56C97A96434C}</Project>
       <Name>opendata</Name>

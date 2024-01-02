@@ -8,3 +8,5 @@ C:\Users\maxime.chazard\source\repos\opendata\opendata\obj\Debug\opendata.pdb
 C:\Users\maxime.chazard\source\repos\opendata\opendata\bin\Debug\Newtonsoft.Json.dll
 C:\Users\maxime.chazard\source\repos\opendata\opendata\bin\Debug\Newtonsoft.Json.xml
 C:\Users\maxime.chazard\source\repos\opendata\opendata\obj\Debug\opendata.csproj.CopyComplete
+C:\Users\maxime.chazard\source\repos\opendata\opendata\bin\Debug\OpendataLibrary.dll
+C:\Users\maxime.chazard\source\repos\opendata\opendata\bin\Debug\OpendataLibrary.pdb
