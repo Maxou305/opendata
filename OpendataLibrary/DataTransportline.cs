@@ -9,7 +9,12 @@ namespace OpendataLibrary
 
         public List<TransportLine> Data { get => _data; }
 
-        public DataTransportline(IAPI data)
+        public DataTransportline(double x, double y)
+            : this(new Request(x, y))
+        {            
+        }
+
+        internal DataTransportline(IAPI data)
         {
             _data = deserialize(data.GetResponse());
         }

@@ -9,9 +9,7 @@ namespace OpendataLibrary
     public class Request : IAPI
     {
         private string _response;
-
-        public Request() : this(5.7317390, 45.1847290) { }
-
+        
         public Request(double x, double y)
         {
             _response = GetRequestFromAPI(x, y);
@@ -22,9 +20,14 @@ namespace OpendataLibrary
             return _response;
         }
 
-        public string GetRequestFromAPI(double x, double y)
+        private string GetRequestFromAPI(double x, double y)
         {
             string url = string.Format(CultureInfo.InvariantCulture, "http://data.mobilites-m.fr/api/linesNear/json?x={0}&y={1}&dist={2}&details=true", x, y, 500);
+            return DoRequest(url);
+        }
+
+        private string DoRequest(string url)
+        {
             WebRequest request = WebRequest.Create(url);
             WebResponse response = request.GetResponse();
 
@@ -39,20 +42,5 @@ namespace OpendataLibrary
 
             return responseString;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
