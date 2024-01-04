@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenDataTests", "OpendataTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenDataLibrary", "OpendataLibrary\OpenDataLibrary.csproj", "{C00EE839-CDEF-457A-A198-BAF7E5B703DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenDataWPF", "OpenDataWPF\OpenDataWPF.csproj", "{4BC10CFC-E957-4E0C-883F-EC7CDB5AB367}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 		{C00EE839-CDEF-457A-A198-BAF7E5B703DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C00EE839-CDEF-457A-A198-BAF7E5B703DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C00EE839-CDEF-457A-A198-BAF7E5B703DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BC10CFC-E957-4E0C-883F-EC7CDB5AB367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BC10CFC-E957-4E0C-883F-EC7CDB5AB367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BC10CFC-E957-4E0C-883F-EC7CDB5AB367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BC10CFC-E957-4E0C-883F-EC7CDB5AB367}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

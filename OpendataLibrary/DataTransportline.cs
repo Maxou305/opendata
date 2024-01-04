@@ -1,9 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace OpendataLibrary
 {
-    public class DataTransportline
+    public class DataTransportline : ObservableCollection<TransportLine>
     {
         private List<TransportLine> _data;
 
@@ -23,7 +24,7 @@ namespace OpendataLibrary
             List<string> names = new List<string>();
             foreach (TransportLine transportLine in Data)
             {
-                names.Add(transportLine.name);
+                names.Add(transportLine.Name);
             }
             return names;
         }
@@ -32,7 +33,7 @@ namespace OpendataLibrary
             List<List<string>> lines = new List<List<string>>();
             foreach (TransportLine transportLine in Data)
             {
-                lines.Add(transportLine.lines);
+                lines.Add(transportLine.Lines);
             }
             return lines;
         }

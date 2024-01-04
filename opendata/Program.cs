@@ -15,7 +15,7 @@ namespace opendata
 
             foreach (TransportLine line in transportLines.Data)
             {
-                Console.WriteLine("id : " + line.id);
+                Console.WriteLine("id : " + line.Id);
             }
         }
     }
