@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OpenDataWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="585" Width="896">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -13,15 +13,43 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        
+        <StackPanel Orientation="Horizontal" Margin="20px">
+            <Label Grid.Row="0">Recherche : </Label>
+            <Label Grid.Row="0">Longitude</Label>
+            <TextBox Text="{Binding Lon, UpdateSourceTrigger=PropertyChanged}" Width="150px" VerticalContentAlignment="Center"></TextBox>
+            <Label Grid.Row="0">Latitude</Label>
+            <TextBox Text="{Binding Lat, UpdateSourceTrigger=PropertyChanged}" Width="150px" VerticalContentAlignment="Center"></TextBox>
+            <Label Grid.Row="0">Rayon</Label>
+            <TextBox Text="{Binding Radius, UpdateSourceTrigger=PropertyChanged}" Width="150px" VerticalContentAlignment="Center"></TextBox>
+            <Button Width="100px" Margin="20px 0" Command="{Binding SearchCommand}" Content="Rechercher"></Button>
+        </StackPanel>
 
-        <ItemsControl ItemsSource="{Binding DataTransportlines}" Grid.Row="1">
-            <ItemsControl.ItemTemplate>
+        <ListBox Margin="20,11,20,-15" ItemsSource="{Binding DataTransportlines}" Grid.Row="1">
+            <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Id}" />
                     </StackPanel>
                 </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    
+        <StackPanel Grid.Row="2" VerticalAlignment="Center">
+            <ItemsControl ItemsSource="{Binding DataTransportlines}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Id}"></TextBlock>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                            <TextBlock Text="{Binding Lon}"></TextBlock>
+                            <TextBlock Text="{Binding Lat}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+       
+
     </Grid>
 </Window>

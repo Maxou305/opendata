@@ -6,11 +6,9 @@ C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\bin\Debug\Newtonsoft.J
 C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\bin\Debug\OpendataLibrary.pdb
 C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\bin\Debug\Newtonsoft.Json.xml
 C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\OpenDataWPF.csproj.AssemblyReference.cache
-C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\MainWindow.g.cs
 C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\App.g.cs
 C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\OpenDataWPF_MarkupCompile.cache
 C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\OpenDataWPF_MarkupCompile.lref
-C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\MainWindow.baml
 C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\OpenDataWPF.g.resources
 C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\OpenDataWPF.Properties.Resources.resources
 C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\OpenDataWPF.csproj.GenerateResource.cache
@@ -18,3 +16,5 @@ C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\OpenDataWPF.
 C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\OpenDataWPF.csproj.CopyComplete
 C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\OpenDataWPF.exe
 C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\OpenDataWPF.pdb
+C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\MainWindow.g.cs
+C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\MainWindow.baml

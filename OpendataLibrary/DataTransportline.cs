@@ -10,9 +10,9 @@ namespace OpendataLibrary
 
         public List<TransportLine> Data { get => _data; }
 
-        public DataTransportline(double x, double y)
-            : this(new Request(x, y))
-        {            
+        public DataTransportline(double lon, double lat, int radius)
+            : this(new Request(lon, lat, radius))
+        {
         }
 
         internal DataTransportline(IAPI data)
@@ -24,7 +24,10 @@ namespace OpendataLibrary
             List<string> names = new List<string>();
             foreach (TransportLine transportLine in Data)
             {
-                names.Add(transportLine.Name);
+                if (!names.Contains(transportLine.Name))
+                {
+                    names.Add(transportLine.Name);
+                }
             }
             return names;
         }
@@ -37,7 +40,8 @@ namespace OpendataLibrary
             }
             return lines;
         }
-        public List<TransportLine> deserialize(string data) {
+        public List<TransportLine> deserialize(string data)
+        {
             return JsonConvert.DeserializeObject<List<TransportLine>>(data);
         }
     }

@@ -8,9 +8,9 @@ namespace OpendataLibrary
     {
         private string _response;
         
-        public Request(double x, double y)
+        public Request(double lon, double lat, int radius)
         {
-            _response = GetRequestFromAPI(x, y);
+            _response = GetRequestFromMetroAPI(lon, lat, radius);
         }
 
         public string GetResponse()
@@ -18,9 +18,9 @@ namespace OpendataLibrary
             return _response;
         }
 
-        private string GetRequestFromAPI(double x, double y)
+        private string GetRequestFromMetroAPI(double lon, double lat, int radius)
         {
-            string url = string.Format(CultureInfo.InvariantCulture, "http://data.mobilites-m.fr/api/linesNear/json?x={0}&y={1}&dist={2}&details=true", x, y, 500);
+            string url = string.Format(CultureInfo.InvariantCulture, "http://data.mobilites-m.fr/api/linesNear/json?x={0}&y={1}&dist={2}&details=true", lon, lat, radius);
             return DoRequest(url);
         }
 

@@ -5,59 +5,91 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Input;
 using OpendataLibrary;
+using OpenDataWPF.Commands;
 
 namespace OpenDataWPF
 {
     sealed class MyViewModel : INotifyPropertyChanged
     {
+        private double _longitude;
+        private double _latitude;
+        private int _radius;
         private DataTransportline _transportline;
-
-        public List<string> Names
-        {
-            get
-            {
-                return _transportline.getNames();
-            }
-            set { }
-        }
-
         public ObservableCollection<TransportLine> DataTransportlines { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        //public string LastName
-        //{
-        //    get { return user.LastName; }
-        //    set
-        //    {
-        //        if (user.LastName != value)
-        //        {
-        //            user.LastName = value;
-        //            OnPropertyChange("LastName");
-        //            // If the first name has changed, the FullName property needs to be udpated as well.
-        //            OnPropertyChange("FullName");
-        //        }
-        //    }
-        //}
+        public ICommand SearchCommand { get; private set; }
 
-        // This property is an example of how model properties can be presented differently to the View.
-        // In this case, we transform the birth date to the user's age, which is read only.
-
-
-        // This property is just for display purposes and is a composition of existing data.
+        private DataTransportline Transportline
+        {
+            get; set;
+        }
+        public double Lon
+        {
+            get { return _longitude; }
+            set
+            {
+                {
+                    if (_longitude != value)
+                    {
+                        _longitude = value;
+                    }
+                }
+            }
+        }
+        public double Lat
+        {
+            get { return _latitude; }
+            set
+            {
+                {
+                    if (_latitude != value)
+                    {
+                        _latitude = value;
+                    }
+                }
+            }
+        }
+        public int Radius
+        {
+            get { return _radius; }
+            set
+            {
+                {
+                    if (_radius != value)
+                    {
+                        _radius = value;
+                    }
+                }
+            }
+        }
 
         public MyViewModel()
         {
-            _transportline = new DataTransportline(5.73119705178461, 45.184446886268645);
-            DataTransportlines = new ObservableCollection<TransportLine>(_transportline.Data);
+            SearchCommand = new RelayCommand(DoNewRequest);
+            DataTransportlines = new ObservableCollection<TransportLine>();
+            Lon = 5.73119705178461;
+            Lat = 45.184446886268645;
+            Radius = 100;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChange(string propertyName)
         {
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        public void DoNewRequest(object obj)
+        {
+            _transportline = new DataTransportline(_longitude, _latitude, _radius);
+
+            foreach (TransportLine transportline in _transportline.Data)
+            {
+                DataTransportlines.Add(transportline);
             }
         }
     }
