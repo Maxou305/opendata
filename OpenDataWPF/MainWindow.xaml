@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OpenDataWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="585" Width="896">
+        Title="MainWindow" Height="Auto" Width="Auto" SizeToContent="WidthAndHeight">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -14,42 +14,29 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         
-        <StackPanel Orientation="Horizontal" Margin="20px">
-            <Label Grid.Row="0">Recherche : </Label>
-            <Label Grid.Row="0">Longitude</Label>
+        <StackPanel Orientation="Horizontal" Margin="20px" Grid.Row="0">
+            <Label>Recherche : </Label>
+            <Label>Longitude</Label>
             <TextBox Text="{Binding Lon, UpdateSourceTrigger=PropertyChanged}" Width="150px" VerticalContentAlignment="Center"></TextBox>
-            <Label Grid.Row="0">Latitude</Label>
+            <Label>Latitude</Label>
             <TextBox Text="{Binding Lat, UpdateSourceTrigger=PropertyChanged}" Width="150px" VerticalContentAlignment="Center"></TextBox>
-            <Label Grid.Row="0">Rayon</Label>
+            <Label>Rayon</Label>
             <TextBox Text="{Binding Radius, UpdateSourceTrigger=PropertyChanged}" Width="150px" VerticalContentAlignment="Center"></TextBox>
             <Button Width="100px" Margin="20px 0" Command="{Binding SearchCommand}" Content="Rechercher"></Button>
         </StackPanel>
 
-        <ListBox Margin="20,11,20,-15" ItemsSource="{Binding DataTransportlines}" Grid.Row="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Id}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    
-        <StackPanel Grid.Row="2" VerticalAlignment="Center">
-            <ItemsControl ItemsSource="{Binding DataTransportlines}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Id}"></TextBlock>
-                            <TextBlock Text="{Binding Name}"></TextBlock>
-                            <TextBlock Text="{Binding Lon}"></TextBlock>
-                            <TextBlock Text="{Binding Lat}"></TextBlock>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </StackPanel>
-       
+        <ListView ItemsSource="{Binding DataTransportlines}" Grid.Row="3" Height="500" Width="800" Margin="0 0 0 20px"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListView.View>
+                <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Header="ID" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Header="Nom" Width="100"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Lon}" Header="Longitude" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Lat}" Header="Latitude" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Lines}" Header="Lignes" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
 
     </Grid>
 </Window>

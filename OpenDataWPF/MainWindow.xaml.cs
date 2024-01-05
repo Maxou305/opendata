@@ -28,5 +28,10 @@ namespace OpenDataWPF
             _viewModel = new MyViewModel();
             DataContext = _viewModel;
         }
+
+        private void ListView_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+
+        }
     }
 }
