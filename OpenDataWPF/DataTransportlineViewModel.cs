@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Xml;
+using System.Xml.Linq;
+using Microsoft.Maps.MapControl.WPF;
 using OpendataLibrary;
 using OpenDataWPF.Commands;
 
@@ -19,6 +25,18 @@ namespace OpenDataWPF
         private int _radius;
         private DataTransportline _transportline;
         public ObservableCollection<TransportLine> DataTransportlines { get; set; }
+
+        private ObservableCollection<Location> _pushpins;
+
+        public ObservableCollection<Location> Pushpins
+        {
+            get { return _pushpins; }
+            set
+            {
+                _pushpins = value;
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand SearchCommand { get; private set; }
@@ -71,8 +89,9 @@ namespace OpenDataWPF
         {
             SearchCommand = new RelayCommand(DoNewRequest);
             DataTransportlines = new ObservableCollection<TransportLine>();
-            Lon = 5.73119705178461;
-            Lat = 45.184446886268645;
+            Pushpins = new ObservableCollection<Location>();
+            Lon = 5.731507;
+            Lat = 45.185018;
             Radius = 100;
         }
 
@@ -87,10 +106,17 @@ namespace OpenDataWPF
         {
             _transportline = new DataTransportline(_longitude, _latitude, _radius);
             DataTransportlines.Clear();
+            Pushpins.Clear();
             foreach (TransportLine transportline in _transportline.Data)
             {
                 DataTransportlines.Add(transportline);
+                DisplayPin(transportline);
             }
         }
+        public void DisplayPin(TransportLine line)
+        {
+            Pushpins.Add(new Location(line.Lat, line.Lon));
+        }
+
     }
 }

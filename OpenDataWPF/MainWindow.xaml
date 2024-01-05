@@ -18,7 +18,16 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <m:Map Center="45.1845224, 5.7209405" ZoomLevel="11" Grid.Column="1" Margin="0 0 20 0" Grid.Row="1" Width="auto" MaxWidth="800" MinHeight="500" Height="auto" CredentialsProvider="AlQWTZHVbFC09-Jhsa6QI-znVI2tiWCIBLC4cHcWbYN6nwc8Cdo769FFE4S7ejNA"/>
+        <m:Map Name="MyMap" Center="45.1845224, 5.731507" ZoomLevel="14" Grid.Column="1" Margin="0 0 20 0" Grid.Row="1" Width="auto" MaxWidth="800" MinHeight="500" Height="auto" CredentialsProvider="AlQWTZHVbFC09-Jhsa6QI-znVI2tiWCIBLC4cHcWbYN6nwc8Cdo769FFE4S7ejNA">
+            <m:Pushpin Location="45.185018, 5.731507"/>
+            <m:MapItemsControl ItemsSource="{Binding Pushpins}">
+                <m:MapItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <m:Pushpin Location="{Binding}" Background="Blue"/>
+                    </DataTemplate>
+                </m:MapItemsControl.ItemTemplate>
+            </m:MapItemsControl>
+        </m:Map>
         
         <StackPanel Orientation="Horizontal" Margin="20px" Grid.Row="0" Grid.ColumnSpan="2">
             <Label>Recherche : </Label>
