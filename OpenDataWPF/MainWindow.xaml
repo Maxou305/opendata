@@ -3,18 +3,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         xmlns:local="clr-namespace:OpenDataWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="Auto" Width="Auto" SizeToContent="WidthAndHeight">
+        Title="MainWindow" Height="800" MinWidth="1000" MinHeight="700" MaxHeight="800" Width="Auto" SizeToContent="Width" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <m:Map Center="45.1845224, 5.7209405" ZoomLevel="11" Grid.Column="1" Margin="0 0 20 0" Grid.Row="1" Width="auto" MaxWidth="800" MinHeight="500" Height="auto" CredentialsProvider="AlQWTZHVbFC09-Jhsa6QI-znVI2tiWCIBLC4cHcWbYN6nwc8Cdo769FFE4S7ejNA"/>
         
-        <StackPanel Orientation="Horizontal" Margin="20px" Grid.Row="0">
+        <StackPanel Orientation="Horizontal" Margin="20px" Grid.Row="0" Grid.ColumnSpan="2">
             <Label>Recherche : </Label>
             <Label>Longitude</Label>
             <TextBox Text="{Binding Lon, UpdateSourceTrigger=PropertyChanged}" Width="150px" VerticalContentAlignment="Center"></TextBox>
@@ -25,18 +31,16 @@
             <Button Width="100px" Margin="20px 0" Command="{Binding SearchCommand}" Content="Rechercher"></Button>
         </StackPanel>
 
-        <ListView ItemsSource="{Binding DataTransportlines}" Grid.Row="3" Height="500" Width="800" Margin="0 0 0 20px"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
+        <ListView ItemsSource="{Binding DataTransportlines}" MinHeight="500" Grid.Row="1" MaxHeight="300" Height="auto" MaxWidth="810" Width="auto" Margin="20px 0 20px 20px"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <ListView.View>
                 <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Header="ID" Width="100"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Header="Nom" Width="100"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Lon}" Header="Longitude" Width="100"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Lat}" Header="Latitude" Width="100"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Lines}" Header="Lignes" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Header="ID" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Header="Nom" Width="auto"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Lon}" Header="Longitude" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Lat}" Header="Latitude" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Lines}" Header="Lignes" Width="auto"/>
                 </GridView>
             </ListView.View>
         </ListView>
-
-
     </Grid>
 </Window>

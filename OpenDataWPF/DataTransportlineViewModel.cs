@@ -86,7 +86,7 @@ namespace OpenDataWPF
         public void DoNewRequest(object obj)
         {
             _transportline = new DataTransportline(_longitude, _latitude, _radius);
-
+            DataTransportlines.Clear();
             foreach (TransportLine transportline in _transportline.Data)
             {
                 DataTransportlines.Add(transportline);

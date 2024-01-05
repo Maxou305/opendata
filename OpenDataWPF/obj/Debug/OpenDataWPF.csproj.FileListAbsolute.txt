@@ -18,3 +18,5 @@ C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\OpenDataWPF.
 C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\OpenDataWPF.pdb
 C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\MainWindow.g.cs
 C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\obj\Debug\MainWindow.baml
+C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\bin\Debug\Microsoft.Maps.MapControl.WPF.dll
+C:\Users\maxime.chazard\source\repos\opendata\OpenDataWPF\bin\Debug\Microsoft.Maps.MapControl.WPF.xml
