@@ -6,6 +6,7 @@
         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         xmlns:local="clr-namespace:OpenDataWPF"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=local:MyViewModel}"
         Title="MainWindow" Height="800" MinWidth="1000" MinHeight="700" MaxHeight="800" Width="Auto" SizeToContent="Width" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
     <Grid>
         <Grid.RowDefinitions>
@@ -18,19 +19,18 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <m:Map Name="MyMap" Center="45.1845224, 5.731507" ZoomLevel="14" Grid.Column="1" Margin="0 0 20 0" Grid.Row="1" Width="auto" MaxWidth="800" MinHeight="500" Height="auto" CredentialsProvider="AlQWTZHVbFC09-Jhsa6QI-znVI2tiWCIBLC4cHcWbYN6nwc8Cdo769FFE4S7ejNA">
-            <m:Pushpin Location="45.185018, 5.731507"/>
-            <m:MapItemsControl ItemsSource="{Binding Pushpins}">
-                <m:MapItemsControl.ItemTemplate>
+        <m:Map Center="{Binding MapCenter, Mode=TwoWay}" ZoomLevel="{Binding ZoomLevel, Mode=TwoWay}" Grid.Column="1" Margin="0 0 20 0" Grid.Row="1" Width="auto" MaxWidth="800" MinHeight="500" Height="auto" CredentialsProvider="AlQWTZHVbFC09-Jhsa6QI-znVI2tiWCIBLC4cHcWbYN6nwc8Cdo769FFE4S7ejNA">
+            <m:MapItemsControl ItemsSource="{Binding Pushpins}" >
+                <m:MapItemsControl.ItemTemplate >
                     <DataTemplate>
-                        <m:Pushpin Location="{Binding}" Background="Blue"/>
+                        <m:Pushpin Location="{Binding}" Background="Blue" />
                     </DataTemplate>
                 </m:MapItemsControl.ItemTemplate>
             </m:MapItemsControl>
         </m:Map>
-        
+
         <StackPanel Orientation="Horizontal" Margin="20px" Grid.Row="0" Grid.ColumnSpan="2">
-            <Label>Recherche : </Label>
+            <Label>Recherche :</Label>
             <Label>Longitude</Label>
             <TextBox Text="{Binding Lon, UpdateSourceTrigger=PropertyChanged}" Width="150px" VerticalContentAlignment="Center"></TextBox>
             <Label>Latitude</Label>
@@ -42,12 +42,12 @@
 
         <ListView ItemsSource="{Binding DataTransportlines}" MinHeight="500" Grid.Row="1" MaxHeight="300" Height="auto" MaxWidth="810" Width="auto" Margin="20px 0 20px 20px"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <ListView.View>
-                <GridView AllowsColumnReorder="true" ColumnHeaderToolTip="Employee Information">
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Id}" Header="ID" Width="auto"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}" Header="Nom" Width="auto"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Lon}" Header="Longitude" Width="auto"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Lat}" Header="Latitude" Width="auto"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Lines}" Header="Lignes" Width="auto"/>
+                <GridView AllowsColumnReorder="true">
+                    <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="ID" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Nom" Width="auto"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Lon}" Header="Longitude" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Lat}" Header="Latitude" Width="auto"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Lines}" Header="Lignes" Width="auto"/>
                 </GridView>
             </ListView.View>
         </ListView>

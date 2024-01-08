@@ -23,10 +23,35 @@ namespace OpenDataWPF
         private double _longitude;
         private double _latitude;
         private int _radius;
+        private double _zoomLevel;
+        private Location _mapCenter;
         private DataTransportline _transportline;
-        public ObservableCollection<TransportLine> DataTransportlines { get; set; }
-
+        public event PropertyChangedEventHandler PropertyChanged;
         private ObservableCollection<Location> _pushpins;
+
+        public ObservableCollection<TransportStop> DataTransportlines { get; set; }
+
+        public Location MapCenter
+        {
+            get => _mapCenter;
+            set
+            {
+                _mapCenter = value;
+                OnPropertyChange("MapCenter");
+            }
+        }
+
+        public double ZoomLevel
+        {
+            get => _zoomLevel;
+            set
+            {
+                _zoomLevel = value;
+                OnPropertyChange("ZoomLevel");
+            }
+        }
+
+        public ICommand SearchCommand { get; private set; }
 
         public ObservableCollection<Location> Pushpins
         {
@@ -35,27 +60,19 @@ namespace OpenDataWPF
             {
                 _pushpins = value;
             }
-        }
+        }     
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public ICommand SearchCommand { get; private set; }
-
-        private DataTransportline Transportline
-        {
-            get; set;
-        }
         public double Lon
         {
             get { return _longitude; }
             set
             {
+
+                if (_longitude != value)
                 {
-                    if (_longitude != value)
-                    {
-                        _longitude = value;
-                    }
+                    _longitude = value;
                 }
+
             }
         }
         public double Lat
@@ -63,12 +80,12 @@ namespace OpenDataWPF
             get { return _latitude; }
             set
             {
+
+                if (_latitude != value)
                 {
-                    if (_latitude != value)
-                    {
-                        _latitude = value;
-                    }
+                    _latitude = value;
                 }
+
             }
         }
         public int Radius
@@ -76,23 +93,25 @@ namespace OpenDataWPF
             get { return _radius; }
             set
             {
+
+                if (_radius != value)
                 {
-                    if (_radius != value)
-                    {
-                        _radius = value;
-                    }
+                    _radius = value;
                 }
+
             }
         }
 
         public MyViewModel()
         {
-            SearchCommand = new RelayCommand(DoNewRequest);
-            DataTransportlines = new ObservableCollection<TransportLine>();
+            SearchCommand = new RelayCommand(GetListOfStops);
+            DataTransportlines = new ObservableCollection<TransportStop>();
             Pushpins = new ObservableCollection<Location>();
             Lon = 5.731507;
             Lat = 45.185018;
             Radius = 100;
+            ZoomLevel = 12.0;
+            MapCenter = new Location(45.185018, 5.731507);
         }
 
         protected void OnPropertyChange(string propertyName)
@@ -102,18 +121,29 @@ namespace OpenDataWPF
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        public void DoNewRequest(object obj)
+
+        public void GetListOfStops(object obj)
         {
             _transportline = new DataTransportline(_longitude, _latitude, _radius);
+            DisplayResult();
+        }
+
+
+        public void DisplayResult()
+        {
             DataTransportlines.Clear();
             Pushpins.Clear();
-            foreach (TransportLine transportline in _transportline.Data)
+            foreach (TransportStop transportline in _transportline.Data)
             {
                 DataTransportlines.Add(transportline);
                 DisplayPin(transportline);
             }
+            ZoomLevel = 18;
+            MapCenter = new Location(Lat, Lon);
+            Pushpins.Add(MapCenter);
         }
-        public void DisplayPin(TransportLine line)
+
+        public void DisplayPin(TransportStop line)
         {
             Pushpins.Add(new Location(line.Lat, line.Lon));
         }
