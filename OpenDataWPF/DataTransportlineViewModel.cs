@@ -18,18 +18,28 @@ using OpenDataWPF.Commands;
 
 namespace OpenDataWPF
 {
-    sealed class MyViewModel : INotifyPropertyChanged
+    sealed class MainWindowViewModel : INotifyPropertyChanged
     {
         private double _longitude;
         private double _latitude;
         private int _radius;
         private double _zoomLevel;
         private Location _mapCenter;
-        private DataTransportline _transportline;
+        private DataTransportline _dataTransportline;
         public event PropertyChangedEventHandler PropertyChanged;
         private ObservableCollection<Location> _pushpins;
 
-        public ObservableCollection<TransportStop> DataTransportlines { get; set; }
+        public Location SearchPosition
+        {
+            get => _mapCenter;
+            set
+            {
+                _mapCenter = value;
+                OnPropertyChange("SearchPosition");
+            }
+        }
+
+        public ObservableCollection<TransportStop> ResultData { get; set; }
 
         public Location MapCenter
         {
@@ -55,16 +65,16 @@ namespace OpenDataWPF
 
         public ObservableCollection<Location> Pushpins
         {
-            get { return _pushpins; }
+            get => _pushpins;
             set
             {
                 _pushpins = value;
             }
-        }     
+        }
 
         public double Lon
         {
-            get { return _longitude; }
+            get => _longitude;
             set
             {
 
@@ -77,7 +87,7 @@ namespace OpenDataWPF
         }
         public double Lat
         {
-            get { return _latitude; }
+            get => _latitude;
             set
             {
 
@@ -90,7 +100,7 @@ namespace OpenDataWPF
         }
         public int Radius
         {
-            get { return _radius; }
+            get => _radius;
             set
             {
 
@@ -102,16 +112,16 @@ namespace OpenDataWPF
             }
         }
 
-        public MyViewModel()
+        public MainWindowViewModel()
         {
             SearchCommand = new RelayCommand(GetListOfStops);
-            DataTransportlines = new ObservableCollection<TransportStop>();
+            ResultData = new ObservableCollection<TransportStop>();
             Pushpins = new ObservableCollection<Location>();
             Lon = 5.731507;
             Lat = 45.185018;
             Radius = 100;
             ZoomLevel = 12.0;
-            MapCenter = new Location(45.185018, 5.731507);
+            MapCenter = new Location(Lat, Lon);
         }
 
         protected void OnPropertyChange(string propertyName)
@@ -124,23 +134,29 @@ namespace OpenDataWPF
 
         public void GetListOfStops(object obj)
         {
-            _transportline = new DataTransportline(_longitude, _latitude, _radius);
+            _dataTransportline = new DataTransportline(Lon, Lat, Radius);
             DisplayResult();
         }
 
-
         public void DisplayResult()
         {
-            DataTransportlines.Clear();
-            Pushpins.Clear();
-            foreach (TransportStop transportline in _transportline.Data)
+            ClearObservabelsCollections();
+
+            foreach (TransportStop transportline in _dataTransportline.Data)
             {
-                DataTransportlines.Add(transportline);
+                ResultData.Add(transportline);
                 DisplayPin(transportline);
             }
-            ZoomLevel = 18;
+
+            ZoomLevel = setZoomLevel();
             MapCenter = new Location(Lat, Lon);
-            Pushpins.Add(MapCenter);
+            SearchPosition = MapCenter;
+        }
+
+        public void ClearObservabelsCollections()
+        {
+            ResultData.Clear();
+            Pushpins.Clear();
         }
 
         public void DisplayPin(TransportStop line)
@@ -148,5 +164,24 @@ namespace OpenDataWPF
             Pushpins.Add(new Location(line.Lat, line.Lon));
         }
 
+        public double setZoomLevel()
+        {
+            if (Radius < 100)
+            {
+                return 18;
+            }
+            else if (Radius < 700)
+            {
+                return 16;
+            }
+            else if (Radius < 900)
+            {
+                return 15.5;
+            }
+            else
+            {
+                return 14.5;
+            }
+        }
     }
 }

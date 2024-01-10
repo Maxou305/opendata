@@ -6,20 +6,32 @@
         xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
         xmlns:local="clr-namespace:OpenDataWPF"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance Type=local:MyViewModel}"
-        Title="MainWindow" Height="800" MinWidth="1000" MinHeight="700" MaxHeight="800" Width="Auto" SizeToContent="Width" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
-    <Grid>
+        d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
+        Title="MainWindow" Height="800" MinWidth="1000" MinHeight="700" Width="Auto" SizeToContent="Width" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
 
-        <m:Map Center="{Binding MapCenter, Mode=TwoWay}" ZoomLevel="{Binding ZoomLevel, Mode=TwoWay}" Grid.Column="1" Margin="0 0 20 0" Grid.Row="1" Width="auto" MaxWidth="800" MinHeight="500" Height="auto" CredentialsProvider="AlQWTZHVbFC09-Jhsa6QI-znVI2tiWCIBLC4cHcWbYN6nwc8Cdo769FFE4S7ejNA">
+        <Border Padding="20px" Grid.ColumnSpan="2" Background="AliceBlue" BorderThickness="1" BorderBrush="CadetBlue">
+            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
+                <Label>Longitude</Label>
+                <TextBox Text="{Binding Lon, UpdateSourceTrigger=PropertyChanged}" Width="150px" VerticalContentAlignment="Center"></TextBox>
+                <Label>Latitude</Label>
+                <TextBox Text="{Binding Lat, UpdateSourceTrigger=PropertyChanged}" Width="150px" VerticalContentAlignment="Center"></TextBox>
+                <Label>Rayon</Label>
+                <TextBox Text="{Binding Radius, UpdateSourceTrigger=PropertyChanged}" Width="150px" VerticalContentAlignment="Center"></TextBox>
+                <Button Width="100px" Margin="20px 0" Command="{Binding SearchCommand}" Content="Rechercher"></Button>
+            </StackPanel>
+        </Border>
+
+        <m:Map Center="{Binding MapCenter, Mode=TwoWay}" ZoomLevel="{Binding ZoomLevel, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" CredentialsProvider="AlQWTZHVbFC09-Jhsa6QI-znVI2tiWCIBLC4cHcWbYN6nwc8Cdo769FFE4S7ejNA">
             <m:MapItemsControl ItemsSource="{Binding Pushpins}" >
                 <m:MapItemsControl.ItemTemplate >
                     <DataTemplate>
@@ -27,20 +39,10 @@
                     </DataTemplate>
                 </m:MapItemsControl.ItemTemplate>
             </m:MapItemsControl>
+            <m:Pushpin Location="{Binding SearchPosition}"/>
         </m:Map>
 
-        <StackPanel Orientation="Horizontal" Margin="20px" Grid.Row="0" Grid.ColumnSpan="2">
-            <Label>Recherche :</Label>
-            <Label>Longitude</Label>
-            <TextBox Text="{Binding Lon, UpdateSourceTrigger=PropertyChanged}" Width="150px" VerticalContentAlignment="Center"></TextBox>
-            <Label>Latitude</Label>
-            <TextBox Text="{Binding Lat, UpdateSourceTrigger=PropertyChanged}" Width="150px" VerticalContentAlignment="Center"></TextBox>
-            <Label>Rayon</Label>
-            <TextBox Text="{Binding Radius, UpdateSourceTrigger=PropertyChanged}" Width="150px" VerticalContentAlignment="Center"></TextBox>
-            <Button Width="100px" Margin="20px 0" Command="{Binding SearchCommand}" Content="Rechercher"></Button>
-        </StackPanel>
-
-        <ListView ItemsSource="{Binding DataTransportlines}" MinHeight="500" Grid.Row="1" MaxHeight="300" Height="auto" MaxWidth="810" Width="auto" Margin="20px 0 20px 20px"  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
+        <ListView HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" ItemsSource="{Binding ResultData}" Grid.Row="1" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <ListView.View>
                 <GridView AllowsColumnReorder="true">
                     <GridViewColumn DisplayMemberBinding="{Binding Id}" Header="ID" Width="auto"/>
@@ -51,5 +53,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
     </Grid>
 </Window>
